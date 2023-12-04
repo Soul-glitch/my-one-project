@@ -1,7 +1,8 @@
 <script setup>
-import {reactive,ref} from "vue";
+import {reactive, ref} from "vue";
 import {User, Lock} from '@element-plus/icons-vue'
 import {login} from "@/net";
+import router from "@/router";
 
 const formRef = ref()
 
@@ -19,10 +20,12 @@ const rule = {
     {required: true, message: 'Please enter your password'}
   ]
 }
-const userLogin = ()=>{
-  formRef.value.validate((valid)=>{
-    if(valid){
-      login(form.username,form.password,form.remember,()=>{})
+const userLogin = () => {
+  formRef.value.validate((valid) => {
+    if (valid) {
+      login(form.username, form.password, form.remember, () => {
+        router.push('/index')
+      })
     }
   })
 }
