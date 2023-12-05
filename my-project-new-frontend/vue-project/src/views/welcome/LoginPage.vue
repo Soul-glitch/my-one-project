@@ -76,7 +76,7 @@ const userLogin = () => {
       <span style="font-size: 13px;color: grey">No account?</span>
     </el-divider>
     <div>
-      <el-button style="width: 270px" type="warning" plain>Sign up now</el-button>
+      <el-button @click="router.push('/register')" style="width: 270px" type="warning" plain>Sign up now</el-button>
     </div>
   </div>
 

@@ -13,7 +13,12 @@ import tou from '../assets/tou.jpg';
       <div>veniam labore enim quasi praesentium laboriosam aliquam ipsum facere?</div>
     </div>
     <div class="right-card">
-      <router-view/>
+      <router-view v-slot="{ Component }">
+<!--        Ò³Ãæ¹ý¶É¶¯»­-->
+        <transition name="el-fade-in-linear"  mode="out-in">
+          <component :is="Component"/>
+        </transition>
+      </router-view>
     </div>
 
   </div>

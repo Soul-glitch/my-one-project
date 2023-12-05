@@ -61,7 +61,7 @@ function internalPost(url, data, header, success, failure, error = defaultError)
 }
 
 function internalGet(url, header, success, failure, error = defaultError) {
-    axios.post(url, {headers: header}).then(({data}) => {
+    axios.get(url, {headers: header}).then(({data}) => {
         if (data.code === 200) {
             success(data.data)
         } else {
