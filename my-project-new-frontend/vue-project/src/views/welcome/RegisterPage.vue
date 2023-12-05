@@ -151,9 +151,9 @@ function register(){
               </el-input>
             </el-col>
             <el-col :span="5">
-              <el-button @click="askCode" :disabled="!isEmailValid||coldTime" type="success">
+              <el-button @click="askCode" :disabled="!isEmailValid||coldTime>0" type="success">
                 <!--冷却时间大于0 显示getcode 否则try again in...-->
-                {{ coldTime <= 0 ? 'get code' : `again in ${coldTime} seconds` }}
+                {{ coldTime > 0 ? 'get code' : `again in ${coldTime} seconds` }}
               </el-button>
             </el-col>
           </el-row>
