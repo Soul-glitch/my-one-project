@@ -64,7 +64,7 @@ const userLogin = () => {
             </el-form-item>
           </el-col>
           <el-col :span="12" style="text-align: right">
-            <el-link>Forgot password</el-link>
+            <el-link @click="router.push('/reset')">Forgot password?</el-link>
           </el-col>
         </el-row>
       </el-form>
