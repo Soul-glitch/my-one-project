@@ -3,6 +3,7 @@ import {reactive, ref} from "vue";
 import {User, Lock} from '@element-plus/icons-vue'
 import {login} from "@/net";
 import router from "@/router";
+import {useUserStore} from "@/stores/user";
 
 const formRef = ref()
 
@@ -25,6 +26,8 @@ const userLogin = () => {
     if (valid) {
       login(form.username, form.password, form.remember, () => {
         router.push('/index')
+        // sessionStorage.setItem("username",form.username)
+        useUserStore().increment(form.username)
       })
     }
   })

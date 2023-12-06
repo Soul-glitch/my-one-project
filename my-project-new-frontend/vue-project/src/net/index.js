@@ -70,8 +70,9 @@ function internalGet(url, header, success, failure, error = defaultError) {
     }).catch(err => error(err))
 }
 
+
 function get(url, success, failure = defaultFailure) {
-    internalGet(url, accessHeader(), success(), failure)
+    internalGet(url, accessHeader(), success, failure)
 }
 
 function post(url, data, success, failure = defaultFailure) {

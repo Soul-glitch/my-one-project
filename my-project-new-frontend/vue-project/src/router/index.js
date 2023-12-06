@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import {unauthorized} from "@/net";
 
 
 const router = createRouter({
@@ -27,20 +26,35 @@ const router = createRouter({
         }, {
             path: '/index',
             name: 'index',
-            component: () => import('@/views/IndexView.vue')
+            component: () => import('@/views/IndexView.vue'),
+            children:[
+                {
+                    path: '',
+                    name:'index-page',
+                    component:()=>import('@/views/index/IndexPage.vue')
+                },
+                {
+                    path: '/userdata',
+                    name: 'index-userdata',
+                    component:()=>import('@/views/index/UserDataPage.vue')
+                }
+            ]
         }
     ]
 })
 //配置路由守卫
 router.beforeEach((to, from, next) => {
-    const isUnauthorized = unauthorized()
-
-    if (to.name.startsWith('welcome-') && !isUnauthorized) {    //没有登录 跳到登录页面
-        next('/index')
-    }else if (to.fullPath.startsWith('/index')&&isUnauthorized){    //已经登录 无法跳到登录页面
-        next('/')
-    }else {
-        next()
-    }
+    // const isUnauthorized = unauthorized()
+    // if (to.name.startsWith('welcome-') && !isUnauthorized) {    //没有登录 跳到登录页面
+    //     next('/index')
+    // }else if (to.fullPath.startsWith('/index')&&isUnauthorized){    //已经登录 无法跳到登录页面
+    //     next('/')
+    // }else {
+    //     next()
+    // }
+    if(to.path==='/') return next()
+    let token = sessionStorage.getItem("access_token")===null?localStorage.getItem("access_token"):sessionStorage.getItem("access_token");
+    if (!token) return next("/")
+    next()
 })
 export default router
