@@ -1,9 +1,9 @@
 <script setup>
 
-import {reactive, ref} from "vue";
-import {post, get} from "@/net";
-import {Message, User} from "@element-plus/icons-vue";
-import {ElMessage} from "element-plus";
+import { get, post } from "@/net";
+import { Message, User } from "@element-plus/icons-vue";
+import { ElMessage, ElMessageBox } from "element-plus";
+import { reactive, ref } from "vue";
 
 const value = ref(5)
 const form = reactive({
@@ -80,8 +80,8 @@ function condition() {
   })
 }
 
-function deleteData(row){
-  post('/api/user/delete',{...row},(data)=>{
+function deleteData(row) {
+  post('/api/user/delete', {...row}, (data) => {
     ElMessage.success(data);
   })
 }
@@ -91,9 +91,21 @@ const handleEdit = (index, row) => {
   console.log(index, row)
 
 }
+
+const open = (row) => {
+  ElMessageBox.alert('删除用户信息', '确认窗口', {
+    // if you want to disable its autofocus
+    // autofocus: false,
+    confirmButtonText: 'OK',
+    callback: () => {
+      deleteData(row)
+    },
+  })
+}
+
 const handleDelete = (index, row) => {
   console.log(index, row)
-  deleteData(row)
+  open(row)
   getTableData()
 }
 </script>
@@ -134,7 +146,7 @@ const handleDelete = (index, row) => {
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-button @click="condition" type="success" >查找对应数据</el-button>
+            <el-button @click="condition" type="success">查找对应数据</el-button>
           </el-col>
         </el-row>
 
@@ -149,8 +161,9 @@ const handleDelete = (index, row) => {
         <el-table-column prop="role" label="用户类别"/>
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
-            <el-button size="small" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button type="warning" size="small" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+            <!--            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
+            <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)" >删除</el-button>
           </template>
         </el-table-column>
       </el-table>
