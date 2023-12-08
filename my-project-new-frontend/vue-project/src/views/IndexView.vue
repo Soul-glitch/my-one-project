@@ -3,6 +3,7 @@ import router from "@/router";
 import {logout} from "@/net";
 import {CirclePlusFilled, Coin, Location, Lock, Plus} from "@element-plus/icons-vue";
 import {useUserStore} from "@/stores/user";
+import {ElMessage} from "element-plus";
 
 const username = useUserStore()
 const handleOpen = (key, keyPath) => {
@@ -13,9 +14,9 @@ const handleClose = (key, keyPath) => {
 }
 
 function userLogout() {
-  logout(() => {
-    router.push('/')
-  })
+  sessionStorage.removeItem("success_token");
+  router.push('/')
+  ElMessage.success("登出成功")
 }
 
 
@@ -49,9 +50,13 @@ function userLogout() {
           </div>
         </el-header>
         <el-container>
-          <el-aside width="200px">
-            <div @click="router.push('index')" style="text-align: center;font-size: 25px">主页菜单</div>
-            <el-menu @open="handleOpen" @close="handleClose">
+          <el-aside width="200px;">
+            <div @click="router.push('index')" style="text-align: center;font-size: 25px;">主页菜单</div>
+            <el-menu @open="handleOpen" @close="handleClose"
+                     active-text-color="#409EFF"
+                     class="el-menu-vertical-demo"
+                     default-active="2"
+                     text-color="#fff">
               <el-sub-menu index="1">
                 <template #title>
                   <el-icon>
@@ -61,7 +66,7 @@ function userLogout() {
                 </template>
                 <el-menu-item-group title="子菜单一号">
                   <el-menu-item index="1-1" @click="router.push('/userdata')">用户管理</el-menu-item>
-                  <el-menu-item index="1-2">产品管理</el-menu-item>
+                  <el-menu-item index="1-2" @click="router.push('/student-data')">学生信息</el-menu-item>
                 </el-menu-item-group>
                 <el-menu-item-group title="子菜单二号">
                   <el-menu-item index="1-3">item one</el-menu-item>

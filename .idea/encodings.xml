@@ -2,10 +2,11 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/my-project-backend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/components/AddStudentDialog.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/components/AddUserDialog.vue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/IndexView.vue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/index/IndexPage.vue" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/index/IndexPage.vue" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/index/UserDataPage.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/index/StudentDataPage.vue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/my-project-new-frontend/vue-project/src/views/index/UserDataPage.vue" charset="UTF-8" />
   </component>
 </project>

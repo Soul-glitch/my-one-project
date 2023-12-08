@@ -13,30 +13,34 @@ const router = createRouter({
                     path: '',
                     name: 'welcome-login',
                     component: () => import('@/views/welcome/LoginPage.vue')
-                },{
-                    path:'register',
-                    name:'welcome-register',
-                    component:()=>import('@/views/welcome/RegisterPage.vue')
-                },{
-                    path:'reset',
-                    name:'welcome-reset',
-                    component:()=>import('@/views/welcome/ResetPage.vue')
+                }, {
+                    path: 'register',
+                    name: 'welcome-register',
+                    component: () => import('@/views/welcome/RegisterPage.vue')
+                }, {
+                    path: 'reset',
+                    name: 'welcome-reset',
+                    component: () => import('@/views/welcome/ResetPage.vue')
                 }
             ]
         }, {
             path: '/index',
             name: 'index',
             component: () => import('@/views/IndexView.vue'),
-            children:[
+            children: [
                 {
                     path: '',
-                    name:'index-page',
-                    component:()=>import('@/views/index/IndexPage.vue')
+                    name: 'index-page',
+                    component: () => import('@/views/index/IndexPage.vue')
                 },
                 {
                     path: '/userdata',
                     name: 'index-userdata',
-                    component:()=>import('@/views/index/UserDataPage.vue')
+                    component: () => import('@/views/index/UserDataPage.vue')
+                }, {
+                    path: '/student-data',
+                    name: 'index-student-data',
+                    component: () => import("@/views/index/StudentDataPage.vue")
                 }
             ]
         }
@@ -52,8 +56,8 @@ router.beforeEach((to, from, next) => {
     // }else {
     //     next()
     // }
-    if(to.path==='/') return next()
-    let token = sessionStorage.getItem("access_token")===null?localStorage.getItem("access_token"):sessionStorage.getItem("access_token");
+    if (to.path === '/') return next()
+    let token = sessionStorage.getItem("access_token") === null ? localStorage.getItem("access_token") : sessionStorage.getItem("access_token");
     if (!token) return next("/")
     next()
 })
